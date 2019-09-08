@@ -3,6 +3,10 @@ package me.lewis.inventoryfull.alert;
 import java.util.List;
 import java.util.logging.Level;
 
+import com.Zrips.CMI.CMI;
+import com.Zrips.CMI.Modules.Holograms.CMIHologram;
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import io.github.theluca98.textapi.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -33,7 +37,7 @@ public class AlertManager {
 		
 		if(plugin.getConfigManager().isSoundEnabled()) sendSound(player);
 		
-		//if(plugin.getConfigManager().isHologramEnabled()) sendHologram(player);
+		if(plugin.getConfigManager().isHologramEnabled()) sendHologram(player);
 	}
 
 	private void sendTitle(Player player) {			
