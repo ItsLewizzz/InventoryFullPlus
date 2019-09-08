@@ -1,0 +1,94 @@
+#-----------------------------------------------------------------------#
+# _____                      _                   ______     _ _         #
+#|_   _|                    | |                 |  ____|   | | |  _     #
+#  | |  _ ____   _____ _ __ | |_ ___  _ __ _   _| |__ _   _| | |_| |_   #
+#  | | | '_ \ \ / / _ \ '_ \| __/ _ \| '__| | | |  __| | | | | |_   _|  #
+# _| |_| | | \ V /  __/ | | | || (_) | |  | |_| | |  | |_| | | | |_|    #
+#|_____|_| |_|\_/ \___|_| |_|\__\___/|_|   \__, |_|   \__,_|_|_|        #
+#                                           __/ |                       #
+#                                          |___/                        #
+#-----------------------------------------------------------------------#
+# Author: ItsLewizzz
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# GENERAL SETTINGS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# Toggle whether update notifications are sent (recommended true)
+update-check: true
+
+# Cooldown time to send the inventory full alerts, prevents spam (time in seconds).
+# Set to 0 to disable
+cooldown-time: 3
+
+# This will prevent block breaking when the player's inventory is full when this is set to true
+stop-block-breaking-when-full: false
+
+# Gamemodes listed here will not receive inventoryfull notifications
+gamemode-blacklist:
+  - CREATIVE
+  - SPECTATOR
+
+# Worlds that alerts will not be shown in
+disabled-worlds:
+  - world_the_end
+  - disabled_world_here
+  
+toggle_gui:
+  enabled: true
+  title: '&eToggle Inventory Full'
+  toggle_on:
+    name: '&a&lENABLE'
+  toggle_off:
+    name: '&c&lDISABLE'
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# ALERT SETTINGS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+title:
+  enabled: true
+  main-title: '&cALERT'
+  sub-title: '&eYour Inventory is Full'
+  # Time to fade in, stay and fade out - in seconds
+  fade-in: 1
+  stay: 2
+  fade-out: 1
+
+sound:
+  enabled: true
+  sound: BLOCK_NOTE_PLING
+
+chat-message:
+  enabled: true
+  message:
+  - '&8&m--**-------------**--'
+  - '          &6&lALERT'
+  - '&eYour Inventory Is Full!'
+  - '&8&m--**-------------**--'
+
+actionbar:
+  enabled: true
+  message: '&cYour Inventory Is Full!'
+
+# ** THIS REQUIRES HOLOGRAPHIC DISPLAYS (free) OR CMI (paid)** #
+# https://dev.bukkit.org/projects/holographic-displays
+hologram:
+  enabled: true
+  message:
+  - '&4ALERT'
+  - '&cYour Inventory Is Full'
+  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# MESSAGES
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+messages:
+  PREFIX: '&8[&3InventoryFull&e+&8]'
+#
+  RELOAD_SUCCESS: '%prefix% &aThe configuration has been reloaded in &7%time%ms'
+  NO_PERMISSION: '%prefix% &cYou do not have permission to execute this command.'
+  INVALID_ARGUMENTS: '%prefix% &cInvalid arguments! Do /inventoryfull help'
+#
+  TOGGLE_ENABLE: '%prefix% &eYou have toggled notifications&7: &a&lON'
+  TOGGLE_DISABLE: '%prefix% &eYou have toggled notifications&7: &c&lOFF'
