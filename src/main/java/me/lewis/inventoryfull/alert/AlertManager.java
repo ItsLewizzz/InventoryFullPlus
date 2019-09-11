@@ -7,6 +7,7 @@ import com.Zrips.CMI.CMI;
 import com.Zrips.CMI.Modules.Holograms.CMIHologram;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
+import io.github.theluca98.textapi.ActionBar;
 import io.github.theluca98.textapi.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -48,15 +49,13 @@ public class AlertManager {
 		Integer stay = plugin.getConfigManager().getTitleStay();
 		Integer fadeOut = plugin.getConfigManager().getTitleFadeOut();
 
-		Title title = new Title(mainTitle, subTitle, fadeIn, stay, fadeOut);
+		Title title = new Title(mainTitle, subTitle, fadeIn*20, stay*20, fadeOut*20);
 		title.send(player);
-
-		//plugin.getPacketManager().sendTitle(player, mainTitle, subTitle, fadeIn, stay, fadeOut);
 	}
 	
 	private void sendActionBar(Player player) {
-		String action = plugin.getConfigManager().getActionBarMessage();
-		//plugin.getPacketManager().sendActionBar(player, action);
+		ActionBar action = new ActionBar(plugin.getConfigManager().getActionBarMessage());
+		action.send(player);
 	}
 	
 	private void sendChatMessage(Player player) {
