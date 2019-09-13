@@ -8,12 +8,8 @@ import me.lewis.inventoryfull.utils.Utils;
 public class ConfigManager {
 	
 	private FileConfiguration config;
-	
-	public ConfigManager(FileConfiguration config) {
-		this.config = config;
-		load();
-	}
 
+	// Config values
     private boolean updateCheck;
 	private Integer cooldownTime;
 	private boolean stopBlockBreak;
@@ -45,8 +41,13 @@ public class ConfigManager {
 	private String messageInvalidArguments;
 	private String messageToggleEnable;
 	private String messageToggleDisable;
+
+	public ConfigManager(FileConfiguration config) {
+		this.config = config;
+		load();
+	}
 	
-	public void load() {
+	private void load() {
 		updateCheck = config.getBoolean("update-check");
 		cooldownTime = config.getInt("cooldown-time");
 		stopBlockBreak = config.getBoolean("stop-block-breaking-when-full");
