@@ -6,195 +6,195 @@ import org.bukkit.configuration.file.FileConfiguration;
 import me.lewis.inventoryfull.utils.Utils;
 
 public class ConfigManager {
-	
-	private FileConfiguration config;
 
-	// Config values
+    private FileConfiguration config;
+
+    // Config values
     private boolean updateCheck;
-	private Integer cooldownTime;
-	private boolean stopBlockBreak;
-	private List<String> disabledGamemodes;
-	private List<String> disabledWorlds;
-	private boolean toggleGUI;
-	private String toggleGUIName;
-	private String toggleGUIOnName;
-	private String toggleGUIOffName;
-	
-	private boolean titleEnabled;
-	private String mainTitle;
-	private String subTitle;
-	private Integer titleFadeIn;
-	private Integer titleStay;
-	private Integer titleFadeOut;
-	private boolean soundEnabled;
-	private String sound;
-	private boolean chatEnabled;
-	private List<String> chatMessage;
-	private boolean actionBarEnabled;
-	private String actionBarMessage;
-	private boolean hologramEnabled;
-	private List<String> hologramMessage;
-	
-	private String messagePrefix;
-	private String messageReload;
-	private String messageNoPermission;
-	private String messageInvalidArguments;
-	private String messageToggleEnable;
-	private String messageToggleDisable;
+    private Integer cooldownTime;
+    private boolean stopBlockBreak;
+    private List<String> disabledGamemodes;
+    private List<String> disabledWorlds;
+    private boolean toggleGUI;
+    private String toggleGUIName;
+    private String toggleGUIOnName;
+    private String toggleGUIOffName;
 
-	public ConfigManager(FileConfiguration config) {
-		this.config = config;
-		load();
-	}
-	
-	private void load() {
-		updateCheck = config.getBoolean("update-check");
-		cooldownTime = config.getInt("cooldown-time");
-		stopBlockBreak = config.getBoolean("stop-block-breaking-when-full");
-		disabledGamemodes = config.getStringList("gamemode-blacklist");
-		disabledWorlds = config.getStringList("disabled-worlds");
-		toggleGUI = config.getBoolean("toggle_gui.enabled");
-		toggleGUIName = Utils.color(config.getString("toggle_gui.title"));
-		toggleGUIOnName = Utils.color(config.getString("toggle_gui.toggle_on.name"));
-		toggleGUIOffName = Utils.color(config.getString("toggle_gui.toggle_off.name"));
-		
-		titleEnabled = config.getBoolean("title.enabled");
-		mainTitle = Utils.color(config.getString("title.main-title"));
-		subTitle = Utils.color(config.getString("title.sub-title"));
-		titleFadeIn = config.getInt("title.fade-in");
-		titleStay = config.getInt("title.stay");
-		titleFadeOut = config.getInt("title.fade-out");
-		soundEnabled = config.getBoolean("sound.enabled");
-		sound = config.getString("sound.sound");
-		chatEnabled = config.getBoolean("chat-message.enabled");
-		chatMessage = config.getStringList("chat-message.message");
-		actionBarEnabled = config.getBoolean("actionbar.enabled");
-		actionBarMessage = Utils.color(config.getString("actionbar.message"));
-		hologramEnabled = config.getBoolean("hologram.enabled");
-		hologramMessage = config.getStringList("hologram.message");
-		
-		messagePrefix = Utils.color(config.getString("messages.PREFIX"));
-		messageReload = Utils.color(config.getString("messages.RELOAD_SUCCESS").replace("%prefix%", messagePrefix));
-		messageNoPermission = Utils.color(config.getString("messages.NO_PERMISSION").replace("%prefix%", messagePrefix));
-		messageInvalidArguments = Utils.color(config.getString("messages.INVALID_ARGUMENTS").replace("%prefix%", messagePrefix));
-		messageToggleEnable = Utils.color(config.getString("messages.TOGGLE_ENABLE").replace("%prefix%", messagePrefix));
-		messageToggleDisable = Utils.color(config.getString("messages.TOGGLE_DISABLE").replace("%prefix%", messagePrefix));
-	}
+    private boolean titleEnabled;
+    private String mainTitle;
+    private String subTitle;
+    private Integer titleFadeIn;
+    private Integer titleStay;
+    private Integer titleFadeOut;
+    private boolean soundEnabled;
+    private String sound;
+    private boolean chatEnabled;
+    private List<String> chatMessage;
+    private boolean actionBarEnabled;
+    private String actionBarMessage;
+    private boolean hologramEnabled;
+    private List<String> hologramMessage;
 
-	public boolean isUpdateCheck() {
-		return updateCheck;
-	}
+    private String messagePrefix;
+    private String messageReload;
+    private String messageNoPermission;
+    private String messageInvalidArguments;
+    private String messageToggleEnable;
+    private String messageToggleDisable;
 
-	public Integer getCooldownTime() {
-		return cooldownTime;
-	}
+    public ConfigManager(FileConfiguration config) {
+        this.config = config;
+        load();
+    }
 
-	public boolean isStopBlockBreak() {
-		return stopBlockBreak;
-	}
+    private void load() {
+        updateCheck = config.getBoolean("update-check");
+        cooldownTime = config.getInt("cooldown-time");
+        stopBlockBreak = config.getBoolean("stop-block-breaking-when-full");
+        disabledGamemodes = config.getStringList("gamemode-blacklist");
+        disabledWorlds = config.getStringList("disabled-worlds");
+        toggleGUI = config.getBoolean("toggle_gui.enabled");
+        toggleGUIName = Utils.color(config.getString("toggle_gui.title"));
+        toggleGUIOnName = Utils.color(config.getString("toggle_gui.toggle_on.name"));
+        toggleGUIOffName = Utils.color(config.getString("toggle_gui.toggle_off.name"));
 
-	public List<String> getDisabledGamemodes() {
-		return disabledGamemodes;
-	}
+        titleEnabled = config.getBoolean("title.enabled");
+        mainTitle = Utils.color(config.getString("title.main-title"));
+        subTitle = Utils.color(config.getString("title.sub-title"));
+        titleFadeIn = config.getInt("title.fade-in");
+        titleStay = config.getInt("title.stay");
+        titleFadeOut = config.getInt("title.fade-out");
+        soundEnabled = config.getBoolean("sound.enabled");
+        sound = config.getString("sound.sound");
+        chatEnabled = config.getBoolean("chat-message.enabled");
+        chatMessage = config.getStringList("chat-message.message");
+        actionBarEnabled = config.getBoolean("actionbar.enabled");
+        actionBarMessage = Utils.color(config.getString("actionbar.message"));
+        hologramEnabled = config.getBoolean("hologram.enabled");
+        hologramMessage = config.getStringList("hologram.message");
 
-	public List<String> getDisabledWorlds() {
-		return disabledWorlds;
-	}
+        messagePrefix = Utils.color(config.getString("messages.PREFIX"));
+        messageReload = Utils.color(config.getString("messages.RELOAD_SUCCESS").replace("%prefix%", messagePrefix));
+        messageNoPermission = Utils.color(config.getString("messages.NO_PERMISSION").replace("%prefix%", messagePrefix));
+        messageInvalidArguments = Utils.color(config.getString("messages.INVALID_ARGUMENTS").replace("%prefix%", messagePrefix));
+        messageToggleEnable = Utils.color(config.getString("messages.TOGGLE_ENABLE").replace("%prefix%", messagePrefix));
+        messageToggleDisable = Utils.color(config.getString("messages.TOGGLE_DISABLE").replace("%prefix%", messagePrefix));
+    }
 
-	public boolean isToggleGUI() {
-		return toggleGUI;
-	}
+    public boolean isUpdateCheck() {
+        return updateCheck;
+    }
 
-	public String getToggleGUIName() {
-		return toggleGUIName;
-	}
+    public Integer getCooldownTime() {
+        return cooldownTime;
+    }
 
-	public String getToggleGUIOnName() {
-		return toggleGUIOnName;
-	}
+    public boolean isStopBlockBreak() {
+        return stopBlockBreak;
+    }
 
-	public String getToggleGUIOffName() {
-		return toggleGUIOffName;
-	}
+    public List<String> getDisabledGamemodes() {
+        return disabledGamemodes;
+    }
 
-	public boolean isTitleEnabled() {
-		return titleEnabled;
-	}
+    public List<String> getDisabledWorlds() {
+        return disabledWorlds;
+    }
 
-	public String getMainTitle() {
-		return mainTitle;
-	}
+    public boolean isToggleGUI() {
+        return toggleGUI;
+    }
 
-	public String getSubTitle() {
-		return subTitle;
-	}
+    public String getToggleGUIName() {
+        return toggleGUIName;
+    }
 
-	public Integer getTitleFadeIn() {
-		return titleFadeIn;
-	}
+    public String getToggleGUIOnName() {
+        return toggleGUIOnName;
+    }
 
-	public Integer getTitleStay() {
-		return titleStay;
-	}
+    public String getToggleGUIOffName() {
+        return toggleGUIOffName;
+    }
 
-	public Integer getTitleFadeOut() {
-		return titleFadeOut;
-	}
+    public boolean isTitleEnabled() {
+        return titleEnabled;
+    }
 
-	public boolean isSoundEnabled() {
-		return soundEnabled;
-	}
+    public String getMainTitle() {
+        return mainTitle;
+    }
 
-	public String getSound() {
-		return sound;
-	}
+    public String getSubTitle() {
+        return subTitle;
+    }
 
-	public boolean isChatEnabled() {
-		return chatEnabled;
-	}
+    public Integer getTitleFadeIn() {
+        return titleFadeIn;
+    }
 
-	public List<String> getChatMessage() {
-		return chatMessage;
-	}
+    public Integer getTitleStay() {
+        return titleStay;
+    }
 
-	public boolean isActionBarEnabled() {
-		return actionBarEnabled;
-	}
+    public Integer getTitleFadeOut() {
+        return titleFadeOut;
+    }
 
-	public String getActionBarMessage() {
-		return actionBarMessage;
-	}
+    public boolean isSoundEnabled() {
+        return soundEnabled;
+    }
 
-	public boolean isHologramEnabled() {
-		return hologramEnabled;
-	}
+    public String getSound() {
+        return sound;
+    }
 
-	public List<String> getHologramMessage() {
-		return hologramMessage;
-	}
+    public boolean isChatEnabled() {
+        return chatEnabled;
+    }
 
-	public String getMessagePrefix() {
-		return messagePrefix;
-	}
+    public List<String> getChatMessage() {
+        return chatMessage;
+    }
 
-	public String getMessageReload() {
-		return messageReload;
-	}
+    public boolean isActionBarEnabled() {
+        return actionBarEnabled;
+    }
 
-	public String getMessageNoPermission() {
-		return messageNoPermission;
-	}
+    public String getActionBarMessage() {
+        return actionBarMessage;
+    }
 
-	public String getMessageInvalidArguments() {
-		return messageInvalidArguments;
-	}
+    public boolean isHologramEnabled() {
+        return hologramEnabled;
+    }
 
-	public String getMessageToggleEnable() {
-		return messageToggleEnable;
-	}
+    public List<String> getHologramMessage() {
+        return hologramMessage;
+    }
 
-	public String getMessageToggleDisable() {
-		return messageToggleDisable;
-	}
+    public String getMessagePrefix() {
+        return messagePrefix;
+    }
+
+    public String getMessageReload() {
+        return messageReload;
+    }
+
+    public String getMessageNoPermission() {
+        return messageNoPermission;
+    }
+
+    public String getMessageInvalidArguments() {
+        return messageInvalidArguments;
+    }
+
+    public String getMessageToggleEnable() {
+        return messageToggleEnable;
+    }
+
+    public String getMessageToggleDisable() {
+        return messageToggleDisable;
+    }
 
 }
