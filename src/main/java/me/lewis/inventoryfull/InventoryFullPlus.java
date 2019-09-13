@@ -38,17 +38,17 @@ public class InventoryFullPlus extends JavaPlugin {
         loadListeners();
         loadCommands();
 
-        PluginDescriptionFile pdfFile =  getDescription();
+        PluginDescriptionFile pdfFile = getDescription();
         getLogger().log(Level.INFO, "--------------------------------------");
         getLogger().log(Level.INFO, "InventoryFull+");
         getLogger().log(Level.INFO, "Author: ItsLewizzz");
         getLogger().log(Level.INFO, "Plugin Version: " + pdfFile.getVersion());
 
-        if(getHookManager().isHolographicDisplays()) {
+        if (getHookManager().isHolographicDisplays()) {
             getLogger().log(Level.INFO, "HOOK: Hooked into HolographicDisplays");
         }
 
-        if(getHookManager().isCMI()) {
+        if (getHookManager().isCMI()) {
             getLogger().log(Level.INFO, "HOOK: Hooked into CMI");
         }
 
@@ -58,7 +58,7 @@ public class InventoryFullPlus extends JavaPlugin {
             getLogger().log(Level.INFO, "");
             getLogger().log(Level.WARNING, "You do not have the most updated version of InventoryFull+ (" + getUpdateManager().getNewVersion() + ")");
             getLogger().log(Level.WARNING, "https://www.spigotmc.org/resources/inventoryfull.31544/");
-        }else{
+        } else {
             getLogger().log(Level.INFO, "");
             getLogger().log(Level.INFO, "You are running the latest version of InventoryFull+ :)");
         }
