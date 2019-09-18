@@ -1,12 +1,12 @@
 package me.lewis.inventoryfull.utils;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public enum XMaterial {
-	
 	ACACIA_BOAT("BOAT_ACACIA", 0),
 	ACACIA_BUTTON("WOOD_BUTTON", 0),
 	ACACIA_DOOR("ACACIA_DOOR", 0),
@@ -856,44 +856,47 @@ public enum XMaterial {
 	ZOMBIE_PIGMAN_SPAWN_EGG("MONSTER_EGG", 0),
 	ZOMBIE_SPAWN_EGG("MONSTER_EGG", 0),
 	ZOMBIE_VILLAGER_SPAWN_EGG("MONSTER_EGG", 0),
-	ZOMBIE_WALL_HEAD("SKULL", 0),
-	;
+	ZOMBIE_WALL_HEAD("SKULL", 0);
+
 	String m;
 	int data;
 	
-	XMaterial(String m, int data ){
+	XMaterial(String m, int data) {
 		this.m = m;
 		this.data = data;
 	}
 	
 	@SuppressWarnings("deprecation")
-	public ItemStack parseItem(int amount){
+	public ItemStack parseItem(int amount) {
 		Material mat = parseMaterial();
-		if(isNewVersion()){
+		if (isNewVersion()) {
 			return new ItemStack(mat);
 		}
 		return new ItemStack(mat,amount,(byte) data);
 	}
+
 	static int newV = -1;
-	public static boolean isNewVersion(){
-		if(newV == 0) return false;
-		if(newV == 1) return true;
+	public static boolean isNewVersion() {
+		if (newV == 0) return false;
+		if (newV == 1) return true;
         Material mat = Material.matchMaterial("RED_WOOL");
-        if(mat != null){
+
+        if (mat != null) {
         	newV = 1;
             return true;
         }
+
         newV = 0;
         return false;
 	}
 	
 	private static HashMap<String, XMaterial> cachedSearch = new HashMap<>();
-	public static XMaterial requestXMaterial(String name, byte data){
-		if(cachedSearch.containsKey(name.toUpperCase()+","+data)){
+	public static XMaterial requestXMaterial(String name, byte data) {
+		if (cachedSearch.containsKey(name.toUpperCase()+","+data)) {
 			return cachedSearch.get(name.toUpperCase()+","+data);
 		}
-		for(XMaterial mat:XMaterial.values()){
-			if(name.toUpperCase().equals(mat.m) && ((byte)mat.data) == data){
+		for (XMaterial mat:XMaterial.values()){
+			if (name.equalsIgnoreCase(mat.m) && ((byte)mat.data) == data) {
 				cachedSearch.put(mat.m+","+data,mat);
 				return mat;
 			}
@@ -902,27 +905,27 @@ public enum XMaterial {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public boolean isSameMaterial(ItemStack comp){
-		if(isNewVersion()){
+	public boolean isSameMaterial(ItemStack comp) {
+		if (isNewVersion()){
 			return comp.getType() == this.parseMaterial();
 		}
-		if(comp.getType() == this.parseMaterial() &&
-				(int) comp.getData().getData() == this.data){
+		if (comp.getType() == this.parseMaterial() &&
+				(int) Objects.requireNonNull(comp.getData()).getData() == this.data) {
 			return true;
 		}
 		XMaterial xmat = fromMaterial(comp.getType());
-		if(isDamageable(xmat)){
+		if (isDamageable(xmat)) {
 			return this.parseMaterial() == comp.getType();
 		}
 		return false;
 	}
 	
 	public XMaterial fromMaterial(Material mat){
-		try{
+		try {
 			return XMaterial.valueOf(mat.toString());
-		}catch(IllegalArgumentException e){
-			for(XMaterial xmat:XMaterial.values()){
-				if(xmat.m.equals(mat.toString())){
+		} catch (IllegalArgumentException e) {
+			for (XMaterial xmat:XMaterial.values() ){
+				if (xmat.m.equals(mat.toString())) {
 					return xmat;
 				}
 			}
@@ -930,67 +933,52 @@ public enum XMaterial {
 		return null;
 	}
 	
-	public static XMaterial fromString(String key){
+	public static XMaterial fromString(String key) {
 		XMaterial xmat = null;
-		try{
+		try {
 			xmat = XMaterial.valueOf(key);
 			return xmat;
-		}catch(IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			String[] split = key.split(":");
-			if(split.length == 1){
+			if (split.length == 1) {
 				xmat = requestXMaterial(key,(byte) 0);
-			}else{
+			} else {
 				xmat = requestXMaterial(split[0],(byte) Integer.parseInt(split[1]));
 			}
 			return xmat;
 		}
-		
 	}
 	
 	public boolean isDamageable(XMaterial type){
         String[] split = type.toString().split("_");
         int length = split.length;
-		switch(split[length-1]){
-		case "HELMET":
-			return true;
-		case "CHESTPLATE":
-			return true;
-		case "LEGGINGS":
-			return true;
-		case "BOOTS":
-			return true;
-		case "SWORD":
-			return true;
-		case "AXE":
-			return true;
-		case "PICKAXE":
-			return true;
-		case "SHOVEL":
-			return true;
-		case "HOE":
-			return true;
-		case "ELYTRA":
-			return true;
-		case "TURTLE_HELMET":
-			return true;
-		case "TRIDENT":
-			return true;
-		case "HORSE_ARMOR":
-			return true;
-		case "SHEARS":
-			return true;
-		default:
+		switch(split[length-1]) {
+			case "HELMET":
+			case "CHESTPLATE":
+			case "LEGGINGS":
+			case "BOOTS":
+			case "SWORD":
+			case "AXE":
+			case "PICKAXE":
+			case "SHOVEL":
+			case "HOE":
+			case "ELYTRA":
+			case "TURTLE_HELMET":
+			case "TRIDENT":
+			case "HORSE_ARMOR":
+			case "SHEARS":
+				return true;
+			default:
 			return false;
 		}
 	}
 	
-	public Material parseMaterial(){
+	public Material parseMaterial() {
         Material mat = Material.matchMaterial(this.toString());
-        if(mat != null){
+        if (mat != null) {
             return mat;
         }
         return Material.matchMaterial(m);
     }
-	
 }
 
