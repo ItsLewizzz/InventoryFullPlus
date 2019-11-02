@@ -8,4 +8,4 @@ description: A Lightweight yet Advanced Alert System
 commands:
   inventoryfullplus:
     default: op
-    aliases: [invfull, inventoryfull]
+    aliases: [if, invfull, inventoryfull]
