@@ -9,6 +9,7 @@ import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import io.github.theluca98.textapi.ActionBar;
 import io.github.theluca98.textapi.Title;
+import me.lewis.inventoryfull.utils.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -17,7 +18,6 @@ import org.bukkit.util.Vector;
 
 
 import me.lewis.inventoryfull.InventoryFullPlus;
-import me.lewis.inventoryfull.utils.Utils;
 
 public class AlertManager {
 
@@ -28,12 +28,12 @@ public class AlertManager {
     }
 
     public void sendAlerts(Player player) {
-        if (!plugin.getCooldownManager().tryCooldown(player.getUniqueId(), plugin.getConfigManager().getCooldownTime()))
-            return;
 
-        if (plugin.getConfigManager().isTitleEnabled() && plugin.isPacketSetup()) sendTitle(player);
+        if (!plugin.getCooldownManager().tryCooldown(player.getUniqueId(), plugin.getConfigManager().getCooldownTime())) return;
 
-        if (plugin.getConfigManager().isActionBarEnabled() && plugin.isPacketSetup()) sendActionBar(player);
+        if (plugin.getConfigManager().isTitleEnabled()) sendTitle(player);
+
+        if (plugin.getConfigManager().isActionBarEnabled()) sendActionBar(player);
 
         if (plugin.getConfigManager().isChatEnabled()) sendChatMessage(player);
 
@@ -61,7 +61,7 @@ public class AlertManager {
 
     private void sendChatMessage(Player player) {
         for (String s : plugin.getConfigManager().getChatMessage()) {
-            player.sendMessage(Utils.color(s));
+            player.sendMessage(ChatUtils.color(s));
         }
     }
 
@@ -83,7 +83,7 @@ public class AlertManager {
             Hologram holo = HologramsAPI.createHologram(plugin, loc);
 
             for (String s : plugin.getConfigManager().getHologramMessage()) {
-                holo.appendTextLine(Utils.color(s));
+                holo.appendTextLine(ChatUtils.color(s));
             }
             Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {

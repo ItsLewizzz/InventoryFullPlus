@@ -20,7 +20,7 @@ public class DataManager {
     private File fileData;
     private FileConfiguration fileConfigData;
 
-    private Map<String, Boolean> players = new HashMap<String, Boolean>();
+    private Map<String, Boolean> players = new HashMap<>();
 
     public DataManager(InventoryFullPlus plugin) {
         this.plugin = plugin;
@@ -48,18 +48,8 @@ public class DataManager {
         }
     }
 
-    public void reloadFile() {
-        fileConfigData = YamlConfiguration.loadConfiguration(fileData);
-        saveDataFile();
-    }
-
-    public void onDisable() {
-        for (Map.Entry<String, Boolean> entry : players.entrySet()) {
-            String uuid = entry.getKey();
-            Boolean value = entry.getValue();
-
-            fileConfigData.set("Users." + uuid + ".enabled", value);
-        }
+    public void save() {
+        for (Map.Entry<String, Boolean> entry : players.entrySet()) fileConfigData.set("Users." + entry.getKey() + ".enabled", entry.getValue());
         saveDataFile();
     }
 
@@ -69,8 +59,8 @@ public class DataManager {
 
     public boolean hasAlerts(UUID uuid) {
         if (!getPlayer(uuid)) {
-            players.put(uuid.toString(), false);
-            return false;
+            players.put(uuid.toString(), true);
+            return true;
         }
         return players.get(uuid.toString());
     }

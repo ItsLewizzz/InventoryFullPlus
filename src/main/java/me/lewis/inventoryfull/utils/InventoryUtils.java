@@ -19,6 +19,7 @@ public class InventoryUtils implements Listener {
 
     public InventoryUtils(InventoryFullPlus plugin) {
         this.plugin = plugin;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     public void openToggleGUI(Player player) {

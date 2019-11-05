@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 public class HooksManager {
 
     private boolean holographicDisplays = false;
-
     private boolean CMI = false;
 
     public void loadHooks() {

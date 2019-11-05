@@ -6,7 +6,7 @@
 
     <groupId>InventoryFullPlus</groupId>
     <artifactId>InventoryFullPlus</artifactId>
-    <version>2.5.3</version>
+    <version>2.5.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>InventoryFullPlus</name>
@@ -47,7 +47,7 @@
                                 </includes>
                             </artifactSet>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputFile>C:\Users\Lewis\Desktop\1.11.2 Server\plugins\${project.artifactId}.jar</outputFile>                            <relocations>
+                            <relocations>
                                 <relocation>
                                     <pattern>org.bstats</pattern>
                                     <shadedPattern>me.lewis.inventoryfull</shadedPattern>

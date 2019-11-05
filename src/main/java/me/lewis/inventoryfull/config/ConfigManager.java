@@ -2,8 +2,8 @@ package me.lewis.inventoryfull.config;
 
 import java.util.List;
 
+import me.lewis.inventoryfull.utils.ChatUtils;
 import org.bukkit.configuration.file.FileConfiguration;
-import me.lewis.inventoryfull.utils.Utils;
 
 public class ConfigManager {
 
@@ -54,13 +54,13 @@ public class ConfigManager {
         disabledGamemodes = config.getStringList("gamemode-blacklist");
         disabledWorlds = config.getStringList("disabled-worlds");
         toggleGUI = config.getBoolean("toggle_gui.enabled");
-        toggleGUIName = Utils.color(config.getString("toggle_gui.title"));
-        toggleGUIOnName = Utils.color(config.getString("toggle_gui.toggle_on.name"));
-        toggleGUIOffName = Utils.color(config.getString("toggle_gui.toggle_off.name"));
+        toggleGUIName = ChatUtils.color(config.getString("toggle_gui.title"));
+        toggleGUIOnName = ChatUtils.color(config.getString("toggle_gui.toggle_on.name"));
+        toggleGUIOffName = ChatUtils.color(config.getString("toggle_gui.toggle_off.name"));
 
         titleEnabled = config.getBoolean("title.enabled");
-        mainTitle = Utils.color(config.getString("title.main-title"));
-        subTitle = Utils.color(config.getString("title.sub-title"));
+        mainTitle = ChatUtils.color(config.getString("title.main-title"));
+        subTitle = ChatUtils.color(config.getString("title.sub-title"));
         titleFadeIn = config.getInt("title.fade-in");
         titleStay = config.getInt("title.stay");
         titleFadeOut = config.getInt("title.fade-out");
@@ -69,16 +69,16 @@ public class ConfigManager {
         chatEnabled = config.getBoolean("chat-message.enabled");
         chatMessage = config.getStringList("chat-message.message");
         actionBarEnabled = config.getBoolean("actionbar.enabled");
-        actionBarMessage = Utils.color(config.getString("actionbar.message"));
+        actionBarMessage = ChatUtils.color(config.getString("actionbar.message"));
         hologramEnabled = config.getBoolean("hologram.enabled");
         hologramMessage = config.getStringList("hologram.message");
 
-        messagePrefix = Utils.color(config.getString("messages.PREFIX"));
-        messageReload = Utils.color(config.getString("messages.RELOAD_SUCCESS").replace("%prefix%", messagePrefix));
-        messageNoPermission = Utils.color(config.getString("messages.NO_PERMISSION").replace("%prefix%", messagePrefix));
-        messageInvalidArguments = Utils.color(config.getString("messages.INVALID_ARGUMENTS").replace("%prefix%", messagePrefix));
-        messageToggleEnable = Utils.color(config.getString("messages.TOGGLE_ENABLE").replace("%prefix%", messagePrefix));
-        messageToggleDisable = Utils.color(config.getString("messages.TOGGLE_DISABLE").replace("%prefix%", messagePrefix));
+        messagePrefix = ChatUtils.color(config.getString("messages.PREFIX"));
+        messageReload = ChatUtils.color(config.getString("messages.RELOAD_SUCCESS").replace("%prefix%", messagePrefix));
+        messageNoPermission = ChatUtils.color(config.getString("messages.NO_PERMISSION").replace("%prefix%", messagePrefix));
+        messageInvalidArguments = ChatUtils.color(config.getString("messages.INVALID_ARGUMENTS").replace("%prefix%", messagePrefix));
+        messageToggleEnable = ChatUtils.color(config.getString("messages.TOGGLE_ENABLE").replace("%prefix%", messagePrefix));
+        messageToggleDisable = ChatUtils.color(config.getString("messages.TOGGLE_DISABLE").replace("%prefix%", messagePrefix));
     }
 
     public boolean isUpdateCheck() {

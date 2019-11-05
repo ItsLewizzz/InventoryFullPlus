@@ -5,17 +5,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InventoryFullEvent extends Event implements Cancellable {
 
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private boolean isCancelled;
     private Player player;
-    private Block block;
+    private List<ItemStack> items;
 
-    public InventoryFullEvent(Player player, Block block) {
+    public InventoryFullEvent(Player player, List<ItemStack> items) {
         this.player = player;
-        this.block = block;
+        this.items = items;
     }
 
     @Override
@@ -41,8 +45,8 @@ public class InventoryFullEvent extends Event implements Cancellable {
         return player;
     }
 
-    public Block getBlock() {
-        return block;
+    public List<ItemStack> getItems() {
+        return items;
     }
 
 

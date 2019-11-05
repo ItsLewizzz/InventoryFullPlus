@@ -1,5 +1,6 @@
 package me.lewis.inventoryfull.listeners;
 
+import me.lewis.inventoryfull.utils.ChatUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,14 +21,10 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-
         if (plugin.getConfigManager().isUpdateCheck() && player.isOp() && !plugin.getUpdateManager().isLatestVersion()) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', ""));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3&lINVENTORYFULL+ UPDATE"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &cAn update for InventoryFull+ is available"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &7Current version: &cv" + plugin.getUpdateManager().getCurrentVersion()));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &7New version: &cv" + plugin.getUpdateManager().getNewVersion()));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', ""));
+            player.sendMessage(ChatUtils.color("&7An update for &3InventoryFull+ &7is available"));
+            player.sendMessage(ChatUtils.color("  &fCurrent version: &cv" + plugin.getUpdateManager().getCurrentVersion()));
+            player.sendMessage(ChatUtils.color("  &fNew version: &av" + plugin.getUpdateManager().getNewVersion()));
         }
     }
 

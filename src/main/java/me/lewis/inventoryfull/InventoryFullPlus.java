@@ -3,6 +3,7 @@ package me.lewis.inventoryfull;
 import java.util.logging.Level;
 
 import org.bstats.bukkit.Metrics;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,15 +28,11 @@ public class InventoryFullPlus extends JavaPlugin {
     private HooksManager hookManager;
     private InventoryUtils inventoryManager;
 
-    private boolean packetSetup = true;
-
     public void onEnable() {
         saveDefaultConfig();
 
         new Metrics(this);
         loadManagers();
-
-        loadListeners();
         loadCommands();
 
         PluginDescriptionFile pdfFile = getDescription();
@@ -67,10 +64,12 @@ public class InventoryFullPlus extends JavaPlugin {
     }
 
     public void onDisable() {
-        dataManager.onDisable();
+        dataManager.save();
     }
 
     public void reload() {
+        if(dataManager != null) dataManager.save();
+        HandlerList.unregisterAll();
         reloadConfig();
         loadManagers();
         new InventoryFullCommand(this);
@@ -84,19 +83,14 @@ public class InventoryFullPlus extends JavaPlugin {
         cooldownManager = new CooldownManager();
         dataManager = new DataManager(this);
         configManager = new ConfigManager(getConfig());
+        inventoryManager = new InventoryUtils(this);
+
         new JoinEvent(this);
         new BreakEvent(this);
-        inventoryManager = new InventoryUtils(this);
     }
 
     private void loadCommands() {
         getCommand("inventoryfullplus").setExecutor(new InventoryFullCommand(this));
-    }
-
-    private void loadListeners() {
-        getServer().getPluginManager().registerEvents(new JoinEvent(this), this);
-        getServer().getPluginManager().registerEvents(new BreakEvent(this), this);
-        getServer().getPluginManager().registerEvents(new InventoryUtils(this), this);
     }
 
     public UpdateManager getUpdateManager() {
@@ -125,13 +119,5 @@ public class InventoryFullPlus extends JavaPlugin {
 
     public InventoryUtils getInventoryManager() {
         return inventoryManager;
-    }
-
-    public boolean isPacketSetup() {
-        return packetSetup;
-    }
-
-    public void setPacketSetup(boolean packetSetup) {
-        this.packetSetup = packetSetup;
     }
 }
