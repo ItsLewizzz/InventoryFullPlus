@@ -11,7 +11,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 import me.lewis.inventoryfull.InventoryFullPlus;
 import me.lewis.inventoryfull.events.InventoryFullEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
 package me.lewis.inventoryfull.listeners;
 
 import me.lewis.inventoryfull.utils.ChatUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
