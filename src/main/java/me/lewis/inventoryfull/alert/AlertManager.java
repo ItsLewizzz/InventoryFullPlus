@@ -29,7 +29,8 @@ public class AlertManager {
 
     public void sendAlerts(Player player) {
 
-        if (!plugin.getCooldownManager().tryCooldown(player.getUniqueId(), plugin.getConfigManager().getCooldownTime())) return;
+        if (!plugin.getCooldownManager().tryCooldown(player.getUniqueId(), plugin.getConfigManager().getCooldownTime()))
+            return;
 
         if (plugin.getConfigManager().isTitleEnabled()) sendTitle(player);
 
@@ -67,7 +68,7 @@ public class AlertManager {
 
     private void sendSound(Player player) {
         try {
-            player.playSound(player.getLocation(), Sound.valueOf(plugin.getConfigManager().getSound()), 50.0F, 50.0F);
+            player.playSound(player.getLocation(), Sound.valueOf(plugin.getConfigManager().getSound()), (float) plugin.getConfigManager().getSoundVolume(), (float) plugin.getConfigManager().getSoundPitch());
         } catch (Exception ex) {
             plugin.getLogger().log(Level.SEVERE, "InventoryFull+ : Your sound value in the configuration is not valid for this server version.");
         }

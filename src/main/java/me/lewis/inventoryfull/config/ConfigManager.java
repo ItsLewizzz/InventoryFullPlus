@@ -28,6 +28,8 @@ public class ConfigManager {
     private Integer titleFadeOut;
     private boolean soundEnabled;
     private String sound;
+    private double soundVolume;
+    private double soundPitch;
     private boolean chatEnabled;
     private List<String> chatMessage;
     private boolean actionBarEnabled;
@@ -66,6 +68,8 @@ public class ConfigManager {
         titleFadeOut = config.getInt("title.fade-out");
         soundEnabled = config.getBoolean("sound.enabled");
         sound = config.getString("sound.sound");
+        soundVolume = config.getDouble("sound.volume");
+        soundPitch = config.getDouble("sound.pitch");
         chatEnabled = config.getBoolean("chat-message.enabled");
         chatMessage = config.getStringList("chat-message.message");
         actionBarEnabled = config.getBoolean("actionbar.enabled");
@@ -147,6 +151,14 @@ public class ConfigManager {
 
     public String getSound() {
         return sound;
+    }
+
+    public double getSoundVolume() {
+        return soundVolume;
+    }
+
+    public double getSoundPitch() {
+        return soundPitch;
     }
 
     public boolean isChatEnabled() {
