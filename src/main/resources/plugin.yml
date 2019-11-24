@@ -2,6 +2,7 @@ name: InventoryFullPlus
 version: ${project.version}
 main: me.lewis.inventoryfull.InventoryFullPlus
 api-version: 1.13
+softdepend: [HolographicDisplays, CMI]
 authors: [ItsLewizzz]
 description: A Lightweight yet Advanced Alert System
 

@@ -69,7 +69,7 @@ public class InventoryFullPlus extends JavaPlugin {
 
     public void reload() {
         if(dataManager != null) dataManager.save();
-        HandlerList.unregisterAll();
+        HandlerList.unregisterAll(this);
         reloadConfig();
         loadManagers();
         new InventoryFullCommand(this);
