@@ -35,7 +35,7 @@ public class BreakEvent implements Listener {
         if (configManager.getDisabledWorlds().contains(player.getWorld().getName())) return;
         if (configManager.getDisabledGamemodes().contains(player.getGameMode().toString())) return;
         if (!dataManager.hasAlerts(player.getUniqueId())) return;
-        if (player.getInventory().firstEmpty() >= 1) return;
+        if (player.getInventory().firstEmpty() >= 0) return;
 
         List<ItemStack> blockDrops = new ArrayList<>(event.getBlock().getDrops());
         if(blockDrops.isEmpty()) return;
