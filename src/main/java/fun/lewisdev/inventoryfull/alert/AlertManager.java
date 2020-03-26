@@ -1,4 +1,4 @@
-package me.lewis.inventoryfull.alert;
+package fun.lewisdev.inventoryfull.alert;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -7,17 +7,15 @@ import com.Zrips.CMI.CMI;
 import com.Zrips.CMI.Modules.Holograms.CMIHologram;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
-import io.github.theluca98.textapi.ActionBar;
-import io.github.theluca98.textapi.Title;
-import me.lewis.inventoryfull.utils.ChatUtils;
+import fun.lewisdev.inventoryfull.InventoryFullPlus;
+import fun.lewisdev.inventoryfull.utils.ChatUtils;
+import fun.lewisdev.inventoryfull.utils.reflection.ActionBar;
+import fun.lewisdev.inventoryfull.utils.reflection.Titles;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-
-import me.lewis.inventoryfull.InventoryFullPlus;
 
 public class AlertManager {
 
@@ -51,13 +49,11 @@ public class AlertManager {
         Integer stay = plugin.getConfigManager().getTitleStay();
         Integer fadeOut = plugin.getConfigManager().getTitleFadeOut();
 
-        Title title = new Title(mainTitle, subTitle, fadeIn * 20, stay * 20, fadeOut * 20);
-        title.send(player);
+        Titles.sendTitle(player, fadeIn * 20, stay * 20, fadeOut * 20, mainTitle, subTitle);
     }
 
     private void sendActionBar(Player player) {
-        ActionBar action = new ActionBar(plugin.getConfigManager().getActionBarMessage());
-        action.send(player);
+        ActionBar.sendActionBar(player, plugin.getConfigManager().getActionBarMessage());
     }
 
     private void sendChatMessage(Player player) {

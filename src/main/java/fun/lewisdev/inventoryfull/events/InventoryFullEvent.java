@@ -1,4 +1,4 @@
-package me.lewis.inventoryfull.events;
+package fun.lewisdev.inventoryfull.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;

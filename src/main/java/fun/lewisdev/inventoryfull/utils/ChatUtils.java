@@ -1,4 +1,4 @@
-package me.lewis.inventoryfull.utils;
+package fun.lewisdev.inventoryfull.utils;
 
 import org.bukkit.ChatColor;
 

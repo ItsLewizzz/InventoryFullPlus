@@ -1,5 +1,7 @@
-package me.lewis.inventoryfull.utils;
+package fun.lewisdev.inventoryfull.utils;
 
+import fun.lewisdev.inventoryfull.InventoryFullPlus;
+import fun.lewisdev.inventoryfull.utils.universal.XMaterial;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -9,9 +11,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import me.lewis.inventoryfull.InventoryFullPlus;
-import me.lewis.inventoryfull.utils.XMaterial;
 
 public class InventoryUtils implements Listener {
 

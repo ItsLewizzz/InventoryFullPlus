@@ -1,26 +1,26 @@
-package me.lewis.inventoryfull.listeners;
+package fun.lewisdev.inventoryfull.listeners;
 
-import me.lewis.inventoryfull.alert.AlertManager;
-import me.lewis.inventoryfull.config.ConfigManager;
-import me.lewis.inventoryfull.config.DataManager;
+import fun.lewisdev.inventoryfull.InventoryFullPlus;
+import fun.lewisdev.inventoryfull.alert.AlertManager;
+import fun.lewisdev.inventoryfull.config.ConfigManager;
+import fun.lewisdev.inventoryfull.config.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import me.lewis.inventoryfull.InventoryFullPlus;
-import me.lewis.inventoryfull.events.InventoryFullEvent;
+import fun.lewisdev.inventoryfull.events.InventoryFullEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BreakEvent implements Listener {
+public class BlockBreakListener implements Listener {
 
     private final InventoryFullPlus plugin;
 
-    public BreakEvent(InventoryFullPlus plugin) {
+    public BlockBreakListener(InventoryFullPlus plugin) {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -42,7 +42,7 @@ public class BreakEvent implements Listener {
 
         List<ItemStack> items = new ArrayList<>();
         blockDrops.forEach(drop -> {
-            for(ItemStack item : player.getInventory().getStorageContents()) {
+            for(ItemStack item : player.getInventory().getContents()) {
                 if(item != null && item.getType().equals(drop.getType()) && item.getAmount() + drop.getAmount() <= item.getMaxStackSize()) return;
             }
             items.add(drop);
@@ -52,7 +52,7 @@ public class BreakEvent implements Listener {
 
         InventoryFullEvent e = new InventoryFullEvent(player, items);
         Bukkit.getPluginManager().callEvent(e);
-        if (e.isCancelled()) return;
+        if(e.isCancelled()) return;
 
         alertManager.sendAlerts(player);
 

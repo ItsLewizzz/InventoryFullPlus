@@ -1,14 +1,12 @@
-package me.lewis.inventoryfull.command;
+package fun.lewisdev.inventoryfull.command;
 
+import fun.lewisdev.inventoryfull.InventoryFullPlus;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
-
-
-import me.lewis.inventoryfull.InventoryFullPlus;
 
 public class InventoryFullCommand implements CommandExecutor {
 

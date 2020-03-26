@@ -1,4 +1,4 @@
-package me.lewis.inventoryfull.config;
+package fun.lewisdev.inventoryfull.config;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,12 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import fun.lewisdev.inventoryfull.InventoryFullPlus;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-
-import me.lewis.inventoryfull.InventoryFullPlus;
 
 public class DataManager {
 

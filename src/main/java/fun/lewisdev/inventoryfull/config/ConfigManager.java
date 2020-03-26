@@ -1,8 +1,8 @@
-package me.lewis.inventoryfull.config;
+package fun.lewisdev.inventoryfull.config;
 
 import java.util.List;
 
-import me.lewis.inventoryfull.utils.ChatUtils;
+import fun.lewisdev.inventoryfull.utils.ChatUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigManager {

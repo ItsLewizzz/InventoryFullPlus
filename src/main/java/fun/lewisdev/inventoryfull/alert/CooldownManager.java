@@ -1,4 +1,4 @@
-package me.lewis.inventoryfull.alert;
+package fun.lewisdev.inventoryfull.alert;
 
 import java.util.HashMap;
 import java.util.Map;

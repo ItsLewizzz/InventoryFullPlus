@@ -1,6 +1,6 @@
 name: InventoryFullPlus
 version: ${project.version}
-main: me.lewis.inventoryfull.InventoryFullPlus
+main: fun.lewisdev.inventoryfull.InventoryFullPlus
 api-version: 1.13
 softdepend: [HolographicDisplays, CMI]
 authors: [ItsLewizzz]

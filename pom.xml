@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>InventoryFullPlus</groupId>
+    <groupId>fun.lewisdev</groupId>
     <artifactId>InventoryFullPlus</artifactId>
-    <version>2.5.5</version>
+    <version>2.5.6</version>
     <packaging>jar</packaging>
 
     <name>InventoryFullPlus</name>
 
-    <description>A Lightweight yet Advanced Alert System</description>
+    <description>A lightweight yet advanced alert system</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,10 +75,6 @@
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public</url>
         </repository>
-        <repository>
-            <id>textapi-repo</id>
-            <url>https://dl.bintray.com/luca98/plugins/</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -91,11 +87,6 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>1.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.theluca98</groupId>
-            <artifactId>TextAPI</artifactId>
-            <version>1.12.2-R2.2</version>
         </dependency>
         <dependency>
             <groupId>com.gmail.filoghost.holographicdisplays</groupId>

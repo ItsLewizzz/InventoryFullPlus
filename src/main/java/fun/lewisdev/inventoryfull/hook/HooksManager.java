@@ -1,4 +1,4 @@
-package me.lewis.inventoryfull.hook;
+package fun.lewisdev.inventoryfull.hook;
 
 import org.bukkit.Bukkit;
 

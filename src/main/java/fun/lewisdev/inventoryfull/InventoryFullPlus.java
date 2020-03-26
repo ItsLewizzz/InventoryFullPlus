@@ -1,26 +1,24 @@
-package me.lewis.inventoryfull;
+package fun.lewisdev.inventoryfull;
 
 import java.util.logging.Level;
 
+import fun.lewisdev.inventoryfull.update.UpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.lewis.inventoryfull.alert.AlertManager;
-import me.lewis.inventoryfull.alert.CooldownManager;
-import me.lewis.inventoryfull.command.InventoryFullCommand;
-import me.lewis.inventoryfull.config.ConfigManager;
-import me.lewis.inventoryfull.config.DataManager;
-import me.lewis.inventoryfull.hook.HooksManager;
-import me.lewis.inventoryfull.listeners.BreakEvent;
-import me.lewis.inventoryfull.listeners.JoinEvent;
-import me.lewis.inventoryfull.update.UpdateManager;
-import me.lewis.inventoryfull.utils.InventoryUtils;
+import fun.lewisdev.inventoryfull.alert.AlertManager;
+import fun.lewisdev.inventoryfull.alert.CooldownManager;
+import fun.lewisdev.inventoryfull.command.InventoryFullCommand;
+import fun.lewisdev.inventoryfull.config.ConfigManager;
+import fun.lewisdev.inventoryfull.config.DataManager;
+import fun.lewisdev.inventoryfull.hook.HooksManager;
+import fun.lewisdev.inventoryfull.listeners.BlockBreakListener;
+import fun.lewisdev.inventoryfull.utils.InventoryUtils;
 
 public class InventoryFullPlus extends JavaPlugin {
 
-    private UpdateManager updateManager;
     private AlertManager alertManager;
     private CooldownManager cooldownManager;
     private DataManager dataManager;
@@ -51,15 +49,7 @@ public class InventoryFullPlus extends JavaPlugin {
 
         alertManager = new AlertManager(this);
 
-        if (!getUpdateManager().isLatestVersion()) {
-            getLogger().log(Level.INFO, "");
-            getLogger().log(Level.WARNING, "You do not have the most updated version of InventoryFull+ (" + getUpdateManager().getNewVersion() + ")");
-            getLogger().log(Level.WARNING, "https://www.spigotmc.org/resources/inventoryfull.31544/");
-        } else {
-            getLogger().log(Level.INFO, "");
-            getLogger().log(Level.INFO, "You are running the latest version of InventoryFull+ :)");
-        }
-
+        new UpdateChecker(this).checkForUpdate();
         getLogger().log(Level.INFO, "--------------------------------------");
     }
 
@@ -76,25 +66,17 @@ public class InventoryFullPlus extends JavaPlugin {
     }
 
     private void loadManagers() {
-        updateManager = new UpdateManager(this);
-        updateManager.checkForUpdate();
         hookManager = new HooksManager();
         hookManager.loadHooks();
         cooldownManager = new CooldownManager();
         dataManager = new DataManager(this);
         configManager = new ConfigManager(getConfig());
         inventoryManager = new InventoryUtils(this);
-
-        new JoinEvent(this);
-        new BreakEvent(this);
+        new BlockBreakListener(this);
     }
 
     private void loadCommands() {
         getCommand("inventoryfullplus").setExecutor(new InventoryFullCommand(this));
-    }
-
-    public UpdateManager getUpdateManager() {
-        return updateManager;
     }
 
     public AlertManager getAlertManager() {
