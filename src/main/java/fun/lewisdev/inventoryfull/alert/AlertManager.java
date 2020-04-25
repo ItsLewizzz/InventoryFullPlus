@@ -66,7 +66,7 @@ public class AlertManager {
         try {
             player.playSound(player.getLocation(), Sound.valueOf(plugin.getConfigManager().getSound()), (float) plugin.getConfigManager().getSoundVolume(), (float) plugin.getConfigManager().getSoundPitch());
         } catch (Exception ex) {
-            plugin.getLogger().log(Level.SEVERE, "InventoryFull+ : Your sound value in the configuration is not valid for this server version.");
+            plugin.getLogger().log(Level.WARNING, "Your sound value in the configuration is not valid for this server version.");
         }
     }
 

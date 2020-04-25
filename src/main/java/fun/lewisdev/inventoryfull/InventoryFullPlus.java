@@ -67,7 +67,7 @@ public class InventoryFullPlus extends JavaPlugin {
 
     private void loadManagers() {
         hookManager = new HooksManager();
-        hookManager.loadHooks();
+        hookManager.reloadHooks(this);
         cooldownManager = new CooldownManager();
         dataManager = new DataManager(this);
         configManager = new ConfigManager(getConfig());

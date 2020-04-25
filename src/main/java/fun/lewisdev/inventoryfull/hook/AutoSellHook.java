@@ -1,36 +1,36 @@
-package fun.lewisdev.inventoryfull.listeners;
+package fun.lewisdev.inventoryfull.hook;
 
 import fun.lewisdev.inventoryfull.InventoryFullPlus;
 import fun.lewisdev.inventoryfull.alert.AlertManager;
 import fun.lewisdev.inventoryfull.config.ConfigManager;
 import fun.lewisdev.inventoryfull.config.DataManager;
+import fun.lewisdev.inventoryfull.events.InventoryFullEvent;
+import me.clip.autosell.events.DropsToInventoryEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-
-import fun.lewisdev.inventoryfull.events.InventoryFullEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockBreakListener implements Listener {
+public class AutoSellHook implements PluginHook, Listener {
 
-    private final InventoryFullPlus plugin;
+    private InventoryFullPlus plugin;
 
-    public BlockBreakListener(InventoryFullPlus plugin) {
+    @Override
+    public void onEnable(InventoryFullPlus plugin) {
         this.plugin = plugin;
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onBlockBreak(BlockBreakEvent event) {
-        if(event.isCancelled()) return;
+    @EventHandler
+    public void onDropsToInv(DropsToInventoryEvent event) {
 
         Player player = event.getPlayer();
+
         ConfigManager configManager = plugin.getConfigManager();
         DataManager dataManager = plugin.getDataManager();
         AlertManager alertManager = plugin.getAlertManager();
@@ -40,7 +40,7 @@ public class BlockBreakListener implements Listener {
         if (!dataManager.hasAlerts(player.getUniqueId())) return;
         if (player.getInventory().firstEmpty() >= 0) return;
 
-        List<ItemStack> blockDrops = new ArrayList<>(event.getBlock().getDrops());
+        List<ItemStack> blockDrops = new ArrayList<>(event.getDrops());
         if(blockDrops.isEmpty()) return;
 
         List<ItemStack> items = new ArrayList<>();
@@ -60,6 +60,6 @@ public class BlockBreakListener implements Listener {
         alertManager.sendAlerts(player);
 
         if (configManager.isStopBlockBreak()) event.setCancelled(true);
-
     }
+
 }

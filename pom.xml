@@ -6,7 +6,7 @@
 
     <groupId>fun.lewisdev</groupId>
     <artifactId>InventoryFullPlus</artifactId>
-    <version>2.5.6</version>
+    <version>2.5.7</version>
     <packaging>jar</packaging>
 
     <name>InventoryFullPlus</name>
@@ -42,7 +42,6 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>io.github.theluca98:TextAPI</include>
                                     <include>org.bstats:bstats-bukkit</include>
                                 </includes>
                             </artifactSet>
@@ -92,6 +91,11 @@
             <groupId>com.gmail.filoghost.holographicdisplays</groupId>
             <artifactId>holographicdisplays-api</artifactId>
             <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>me.clip.autosell</groupId>
+            <artifactId>AutoSell</artifactId>
+            <version>1.9.2</version>
         </dependency>
         <dependency>
             <groupId>com.zrips.cmi</groupId>
