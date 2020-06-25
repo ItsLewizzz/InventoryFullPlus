@@ -19,7 +19,6 @@ public class HooksManager {
     }
 
     public void reloadHooks(InventoryFullPlus plugin) {
-
         PluginManager pluginManager = Bukkit.getPluginManager();
 
         if(pluginManager.isPluginEnabled("AutoSell")) {

@@ -49,7 +49,7 @@ public class InventoryFullPlus extends JavaPlugin {
 
         alertManager = new AlertManager(this);
 
-        new UpdateChecker(this).checkForUpdate();
+        if(getConfig().getBoolean("update-check")) new UpdateChecker(this).checkForUpdate();
         getLogger().log(Level.INFO, "--------------------------------------");
     }
 

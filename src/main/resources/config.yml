@@ -57,7 +57,7 @@ title:
 
 sound:
   enabled: true
-  sound: BLOCK_NOTE_PLING
+  sound: BLOCK_NOTE_BLOCK_PLING
   volume: 10.0
   pitch: 1.0
 
