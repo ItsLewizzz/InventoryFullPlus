@@ -1,85 +1,57 @@
 package fun.lewisdev.inventoryfull.command;
 
-import fun.lewisdev.inventoryfull.InventoryFullPlus;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import fun.lewisdev.inventoryfull.InventoryFullPlusPlugin;
+import fun.lewisdev.inventoryfull.config.Messages;
+import fun.lewisdev.inventoryfull.player.PlayerManager;
+import fun.lewisdev.inventoryfull.utils.TextUtil;
+import me.mattstudios.mf.annotations.*;
+import me.mattstudios.mf.base.CommandBase;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginDescriptionFile;
 
-public class InventoryFullCommand implements CommandExecutor {
+import java.util.UUID;
 
-    private InventoryFullPlus plugin;
+@Command("inventoryfullplus")
+@Alias({"inventoryfull", "invfull", "if"})
+public class InventoryFullCommand extends CommandBase {
 
-    public InventoryFullCommand(InventoryFullPlus plugin) {
+    private final InventoryFullPlusPlugin plugin;
+    private final PlayerManager playerManager;
+
+    public InventoryFullCommand(InventoryFullPlusPlugin plugin) {
         this.plugin = plugin;
+        this.playerManager = plugin.getPlayerManager();
     }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-
-        if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-
-            PluginDescriptionFile pdfFile = plugin.getDescription();
-
-            if (!sender.hasPermission("inventoryfull.help")) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&l> &7Server is running &3InventoryFull&e+ &ev" + pdfFile.getVersion() + " &7By &6ItsLewizzz"));
-                return true;
-            }
-
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ""));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3&lInventoryFull&e&l+ &ev" + pdfFile.getVersion()));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6By ItsLewizzz"));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&ohttps://www.spigotmc.org/resources/inventoryfull.31544/"));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ""));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lCOMMANDS"));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &e/inventoryfull reload &7- &fReload the plugin"));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &e/inventoryfull toggle &7- &fToggle alerts"));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ""));
-            return true;
+    @Default
+    public void defaultCommand(CommandSender sender) {
+        final String version = plugin.getDescription().getVersion();
+        if (!sender.hasPermission("inventoryfull.admin")) {
+            sender.sendMessage(TextUtil.color("&7Server is running {#5cd7b0}InventoryFull+ &7v" + version + " By ItsLewizzz"));
+            return;
         }
 
-        if (args[0].equalsIgnoreCase("reload")) {
+        Messages.HELP.send(sender, "{VERSION}", version);
+    }
 
-            if (!sender.hasPermission("inventoryfull.reload")) {
-                sender.sendMessage(plugin.getConfigManager().getMessageNoPermission());
-                return true;
-            }
+    @SubCommand("reload")
+    @Permission("inventoryfull.admin")
+    public void reloadSubCommand(CommandSender sender) {
+        final long start = System.currentTimeMillis();
+        plugin.onReload();
+        Messages.RELOAD.send(sender, "{TIME}", System.currentTimeMillis() - start);
+    }
 
-            long startTime = System.currentTimeMillis();
-            plugin.reload();
-            sender.sendMessage(plugin.getConfigManager().getMessageReload().replace("%time%", String.valueOf(System.currentTimeMillis() - startTime)));
-            return true;
+    @SubCommand("toggle")
+    @Permission("inventoryfull.toggle")
+    public void toggleSubCommand(Player player) {
+        final UUID uuid = player.getUniqueId();
+        if (playerManager.isPlayerNotifications(uuid)) {
+            playerManager.setPlayerNotifications(uuid, false);
+            Messages.TOGGLE_DISABLE.send(player);
+        } else {
+            playerManager.setPlayerNotifications(uuid, true);
+            Messages.TOGGLE_ENABLE.send(player);
         }
-
-        if (args[0].equalsIgnoreCase("toggle")) {
-
-            if (!(sender instanceof Player)) {
-                sender.sendMessage("You cannot toggle alerts as you are console.");
-                return true;
-            }
-
-            if (!sender.hasPermission("inventoryfull.toggle")) {
-                sender.sendMessage(plugin.getConfigManager().getMessageNoPermission());
-                return true;
-            }
-
-            Player player = (Player) sender;
-
-            if (plugin.getConfigManager().isToggleGUI()) {
-                plugin.getInventoryManager().openToggleGUI(player);
-                return true;
-            }
-
-            if (plugin.getDataManager().hasAlerts(player.getUniqueId())) {
-                plugin.getDataManager().setAlerts(player.getUniqueId(), false);
-                player.sendMessage(plugin.getConfigManager().getMessageToggleDisable());
-            } else {
-                plugin.getDataManager().setAlerts(player.getUniqueId(), true);
-                player.sendMessage(plugin.getConfigManager().getMessageToggleEnable());
-            }
-        }
-
-        return true;
     }
 }

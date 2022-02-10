@@ -1,12 +1,15 @@
-name: ${project.name}
-version: ${project.version}
-main: fun.lewisdev.inventoryfull.InventoryFullPlus
-api-version: 1.13
-softdepend: [HolographicDisplays, CMI, AutoSell]
+name: InventoryFullPlus
+version: @version@
 authors: [ItsLewizzz]
-description: A Lightweight yet Advanced Alert System
+description: Notify players when their inventory is full
 
-commands:
-  inventoryfullplus:
+main: fun.lewisdev.inventoryfull.InventoryFullPlusPlugin
+api-version: 1.13
+
+softdepend: [HolographicDisplays, CMI, AutoSell]
+
+permissions:
+  inventoryfull.admin:
     default: op
-    aliases: [if, invfull, inventoryfull]
+  inventoryfull.toggle:
+    default: op

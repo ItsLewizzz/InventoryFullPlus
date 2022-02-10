@@ -11,9 +11,9 @@ import java.util.List;
 public class InventoryFullEvent extends Event implements Cancellable {
 
     private static final HandlerList HANDLERS_LIST = new HandlerList();
-    private boolean isCancelled;
-    private Player player;
-    private List<ItemStack> items;
+    private boolean cancelled;
+    private final Player player;
+    private final List<ItemStack> items;
 
     public InventoryFullEvent(Player player, List<ItemStack> items) {
         this.player = player;
@@ -22,12 +22,12 @@ public class InventoryFullEvent extends Event implements Cancellable {
 
     @Override
     public boolean isCancelled() {
-        return isCancelled;
+        return cancelled;
     }
 
     @Override
     public void setCancelled(boolean cancelled) {
-        this.isCancelled = cancelled;
+        this.cancelled = cancelled;
     }
 
     @Override
