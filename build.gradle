@@ -45,6 +45,6 @@ shadowJar {
     minimize()
     archiveFileName = "${project.description}-${project.version}.jar"
     relocate 'me.mattstudios.mf', 'fun.lewisdev.inventoryfullplus.libs.command'
-    destinationDir file("C:/Users/lewis/Documents/Development/Test Server (LATEST)/plugins")
+    //destinationDir file("C:/Users/lewis/Documents/Development/Test Server (LATEST)/plugins")
 }
 
