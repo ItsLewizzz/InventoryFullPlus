@@ -1,11 +1,7 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6a20a7473f8443ca8a30015e8544ffb)](https://www.codacy.com/manual/ItsLewizzz/InventoryFullPlus?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ItsLewizzz/InventoryFullPlus&amp;utm_campaign=Badge_Grade)
 
-[![Stargazers][stars-shield]][stars-url]
-[![Forks][forks-shield]][forks-url]
-[![Issues][issues-shield]][issues-url]
 
-  <h3 align="center">InventoryFull+</h3>
-
+<div align="center">
+  <img src="https://i.imgur.com/6LZy6yR.png" alt="Header">
   <p align="center">
     Send alerts to players when their inventory is full.
     <br />
@@ -13,7 +9,15 @@
     <a href="https://www.spigotmc.org/resources/31544/">SpigotMC</a>
     ·
     <a href="https://discord.lewisdev.fun">Discord</a>
+  
+  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6a20a7473f8443ca8a30015e8544ffb)](https://www.codacy.com/manual/ItsLewizzz/InventoryFullPlus?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ItsLewizzz/InventoryFullPlus&amp;utm_campaign=Badge_Grade)
   </p>
+
+[![Stargazers][stars-shield]][stars-url]
+    [![Forks][forks-shield]][forks-url]
+    [![Issues][issues-shield]][issues-url]
+
+</div>
 
 ## License
 
