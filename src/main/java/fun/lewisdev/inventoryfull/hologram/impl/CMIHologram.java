@@ -28,10 +28,10 @@ public class CMIHologram implements HologramHandler {
     @Override
     public void displayHologram(JavaPlugin javaPlugin, Player player, List<String> lines, long displayTime) {
         final Vector vector = player.getLocation().getDirection();
-        final Location loc = player.getEyeLocation().add(vector);
-        loc.setY(loc.getY() - 0.5);
+        final Location location = player.getEyeLocation().add(vector);
+        location.setY(location.getY() - 0.5);
 
-        final com.Zrips.CMI.Modules.Holograms.CMIHologram holo = new com.Zrips.CMI.Modules.Holograms.CMIHologram("invfull-" + player.getUniqueId(), loc);
+        final com.Zrips.CMI.Modules.Holograms.CMIHologram holo = new com.Zrips.CMI.Modules.Holograms.CMIHologram("invfull-" + player.getUniqueId(), location);
 
         holo.setLines(lines);
         hologramManager.addHologram(holo);

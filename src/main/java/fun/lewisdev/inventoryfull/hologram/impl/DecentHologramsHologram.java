@@ -1,7 +1,7 @@
 package fun.lewisdev.inventoryfull.hologram.impl;
 
-import com.gmail.filoghost.holographicdisplays.api.Hologram;
-import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
+import eu.decentsoftware.holograms.api.DHAPI;
+import eu.decentsoftware.holograms.api.holograms.Hologram;
 import fun.lewisdev.inventoryfull.hologram.HologramHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -10,12 +10,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
 import java.util.List;
+import java.util.UUID;
 
-public class HolographicDisplaysHologram implements HologramHandler {
+public class DecentHologramsHologram implements HologramHandler {
 
     @Override
     public String getPluginName() {
-        return "HolographicDisplays";
+        return "DecentHolograms";
     }
 
     @Override
@@ -28,9 +29,7 @@ public class HolographicDisplaysHologram implements HologramHandler {
         final Vector vector = player.getLocation().getDirection().multiply(1);
         final Location location = player.getEyeLocation().add(vector);
 
-        final Hologram holo = HologramsAPI.createHologram(javaPlugin, location);
-
-        lines.forEach(holo::appendTextLine);
-        Bukkit.getScheduler().runTaskLater(javaPlugin, holo::delete, displayTime);
+        final Hologram hologram = DHAPI.createHologram("invfull-" + UUID.randomUUID().toString(), location, lines);
+        Bukkit.getScheduler().runTaskLater(javaPlugin, hologram::delete, displayTime);
     }
 }

@@ -6,7 +6,11 @@ description: Notify players when their inventory is full
 main: fun.lewisdev.inventoryfull.InventoryFullPlusPlugin
 api-version: 1.13
 
-softdepend: [HolographicDisplays, CMI, AutoSell]
+softdepend:
+  - HolographicDisplays
+  - CMI
+  - DecentHolograms
+  - AutoSell
 
 permissions:
   inventoryfull.admin:

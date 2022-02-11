@@ -1,6 +1,7 @@
 package fun.lewisdev.inventoryfull.hologram;
 
 import fun.lewisdev.inventoryfull.hologram.impl.CMIHologram;
+import fun.lewisdev.inventoryfull.hologram.impl.DecentHologramsHologram;
 import fun.lewisdev.inventoryfull.hologram.impl.HolographicDisplaysHologram;
 import fun.lewisdev.inventoryfull.utils.TextUtil;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,6 +35,7 @@ public class HologramManager {
 
         final List<HologramHandler> handlerList = new ArrayList<>();
         handlerList.add(new HolographicDisplaysHologram());
+        handlerList.add(new DecentHologramsHologram());
         handlerList.add(new CMIHologram());
 
         final PluginManager pluginManager = javaPlugin.getServer().getPluginManager();
