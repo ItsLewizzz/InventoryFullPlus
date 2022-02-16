@@ -43,6 +43,7 @@ public class PlayerManager {
                     public void onPlayerQuit(final PlayerQuitEvent event) {
                         final UUID uuid = event.getPlayer().getUniqueId();
                         savePlayerStorage(uuid);
+                        players.remove(uuid);
                         plugin.getCooldownManager().removeCooldowns(uuid);
                     }
                 }).forEach(listener -> plugin.getServer().getPluginManager().registerEvents(listener, plugin));
@@ -95,7 +96,5 @@ public class PlayerManager {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-       players.remove(uuid);
     }
 }
